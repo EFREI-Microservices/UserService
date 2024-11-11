@@ -32,6 +32,26 @@ npm install
 npm run start
 ```
 
+## Utilisateurs par défaut
+
+Lors du lancement du serveur sur un environnement de développement, 2 utilisateurs sont créés par défaut :
+
+Un administrateur avec le role admin
+```json
+{
+    "username": "admin",
+    "password": "admin"
+}
+```
+
+Un utilisateur avec le role user
+```json
+{
+    "username": "user",
+    "password": "user"
+}
+```
+
 ## Endpoints
 
 L'API est accessible à l'adresse `http://localhost:8009/`

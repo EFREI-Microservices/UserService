@@ -7,6 +7,7 @@ const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUI = require("swagger-ui-express");
 const apiRouter = require("./routes");
 const cors = require("cors");
+const { loadFixtures } = require("./datafixtures/AppFixtures");
 
 const corsOptions = {
     origin: true,
@@ -37,6 +38,9 @@ mongoose
     .connect(process.env.DATABASE_URL)
     .then(() => {
         console.log("Database connected");
+        if (process.env.ENV === "dev") {
+            loadFixtures();
+        }
     })
     .catch((error) => {
         console.log(`Database connection error ${error}`);

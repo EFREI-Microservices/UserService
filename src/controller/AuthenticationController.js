@@ -25,6 +25,7 @@ module.exports = {
             });
 
             await newUser.save();
+
             res.status(201).send({
                 id: newUser._id,
                 username: newUser.username,
