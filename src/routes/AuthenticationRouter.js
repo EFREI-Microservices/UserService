@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const AuthenticationController = require("../../../../RenforcementJsMyCv/MyCvApi/src/controller/AuthenticationController");
+const AuthenticationController = require("../controller/AuthenticationController");
 
 /**
  * @swagger

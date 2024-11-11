@@ -39,6 +39,13 @@ module.exports = {
 
     login: async (req, res) => {
         const { username, password } = req.body;
+
+        if (!username || !password) {
+            return res.status(400).send({
+                message: "Nom d'utilisateur ou mot de passe manquant",
+            });
+        }
+
         const user = await UserModel.findOne({ username });
 
         if (!user) {
@@ -56,13 +63,10 @@ module.exports = {
 
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET || "secret", { expiresIn: "1h" });
         res.send({
-            message: "Connexion réussie",
-            user: {
-                id: user.id,
-                username: user.username,
-                role: user.role,
-                token,
-            },
+            id: user.id,
+            username: user.username,
+            role: user.role,
+            token,
         });
     },
 };

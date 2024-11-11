@@ -15,12 +15,9 @@ module.exports = {
             }
 
             res.send({
-                message: "Informations de l'utilisateur récupérées avec succès",
-                user: {
-                    id: user.id,
-                    username: user.username,
-                    role: user.role,
-                },
+                id: user.id,
+                username: user.username,
+                role: user.role,
             });
         } catch (error) {
             res.status(500).send({
@@ -52,11 +49,6 @@ module.exports = {
 
             res.send({
                 message: "Informations mis à jour avec succès",
-                user: {
-                    id: user._id,
-                    username: user.username,
-                    role: user.role,
-                },
             });
         } catch (error) {
             res.status(500).send({
