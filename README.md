@@ -83,6 +83,7 @@ Uniquement si ce sont les informations de l'utilisateur connecté, ou si l'utili
 ```json
 {
     "username": string,
+    "password": string,
     "role": string ("Admin"|"User")
 }
 ```
