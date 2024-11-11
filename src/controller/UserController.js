@@ -43,7 +43,9 @@ module.exports = {
                 user.password = await bcrypt.hash(req.body.password, 10);
             }
 
-            user.role = req.body.role || user.role;
+            if (isUserAdmin(authenticatedUser)) {
+                user.role = req.body.role || user.role;
+            }
 
             await user.save();
 

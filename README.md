@@ -60,7 +60,8 @@ Liste des endpoints :
 
 #### [POST] `/api/auth/register`
 Créer un nouvel utilisateur  
-Le password doit contenir au moins une majuscule et 1 chiffre, et faire au moins 6 caractères.
+Le password doit contenir au moins une majuscule et 1 chiffre, et faire au moins 6 caractères.  
+Request body :
 ```json
 {
     "username": string,
@@ -70,14 +71,14 @@ Le password doit contenir au moins une majuscule et 1 chiffre, et faire au moins
 
 #### [POST] `/api/auth/login`
 Se connecter  
-Request body
+Request body :
 ```json
 {
     "username": string,
     "password": string
 }
 ```
-Retourne un token JWT et les informations de l'utilisateur
+Retourne un token JWT et les informations de l'utilisateur :
 ```json
 {
     "id": string,
@@ -89,7 +90,8 @@ Retourne un token JWT et les informations de l'utilisateur
 
 #### [GET] `/api/user/{id}`
 Afficher les informations d'un utilisateur.  
-Uniquement si ce sont les informations de l'utilisateur connecté, ou si l'utilisateur est admin (Token JWT)
+Uniquement si ce sont les informations de l'utilisateur connecté, ou si l'utilisateur est admin (Token JWT)  
+Retour : 
 ```json
 {
     "id": string,
@@ -100,7 +102,16 @@ Uniquement si ce sont les informations de l'utilisateur connecté, ou si l'utili
 
 #### [PATCH] `/api/user/{id}`
 Modifie les informations de l'utilisateur.  
-Uniquement si ce sont les informations de l'utilisateur connecté, ou si l'utilisateur est admin (Token JWT).
+Uniquement si ce sont les informations de l'utilisateur connecté, ou si l'utilisateur est admin (Token JWT).  
+Le role est modifiable uniquement par un admin.  
+Request body : 
+```json
+{
+    "username": string,
+    "password": string,
+    "role": string ("admin"|"user")
+}
+```
 
 #### [DELETE] `/api/user/{id}`
 Modifie les informations de l'utilisateur.  
