@@ -88,6 +88,9 @@ Retourne un token JWT et les informations de l'utilisateur :
 }
 ```
 
+#### [GET] `/api/auth/check-token`
+Vérifie si le token JWT passé dans le header est valide. Retourne les informations de l'utilisateur si c'est le cas.
+
 #### [GET] `/api/user/{id}`
 Afficher les informations d'un utilisateur.  
 Uniquement si ce sont les informations de l'utilisateur connecté, ou si l'utilisateur est admin (Token JWT)  

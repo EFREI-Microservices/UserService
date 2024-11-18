@@ -58,4 +58,6 @@ router.post("/register", AuthenticationController.register);
  */
 router.post("/login", AuthenticationController.login);
 
+router.get("/check-token", AuthenticationController.checkToken);
+
 module.exports = router;

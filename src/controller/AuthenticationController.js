@@ -8,7 +8,7 @@ module.exports = {
     register: async (req, res) => {
         try {
             verifyUser(req.body);
-            const { username, password, role } = req.body;
+            const { username, password } = req.body;
 
             const existingUser = await UserModel.findOne({ username });
             if (existingUser) {
@@ -21,12 +21,12 @@ module.exports = {
             const newUser = new UserModel({
                 username,
                 password: hash,
-                role: role || Role.USER,
+                role: Role.USER,
             });
 
             await newUser.save();
 
-            res.status(201).send({
+            res.status(200).send({
                 id: newUser._id,
                 username: newUser.username,
                 role: newUser.role,
@@ -69,5 +69,39 @@ module.exports = {
             role: user.role,
             token,
         });
+    },
+
+    checkToken: async (req, res) => {
+        try {
+            const token = req.headers["authorization"]?.replace("Bearer ", "");
+
+            if (!token) {
+                return res.status(401).send({
+                    message: "Token manquant.",
+                });
+            }
+
+            const { userId } = jwt.verify(token, process.env.JWT_SECRET);
+
+            const user = await UserModel.findById(userId);
+
+            if (!user) {
+                return res.status(401).send({
+                    message: "Utilisateur introuvable.",
+                });
+            }
+
+            res.status(200).send({
+                id: user.id,
+                username: user.username,
+                role: user.role,
+            });
+
+            /* eslint-disable-next-line no-unused-vars */
+        } catch (error) {
+            return res.status(401).send({
+                message: "Token invalide.",
+            });
+        }
     },
 };
