@@ -13,7 +13,7 @@ Documentation du UserService
 git clone https://github.com/EFREI-Microservices/UserService.git
 ```
 
-2. Pull une database MongoDB
+2. Pull une database MongoDB (⚠️ Cette étape ainsi que l'étape `3` peuvent être ignorées si vous l'avez déjà fait pour le `BasketService`)
 ```bash
 docker pull mongodb/mongodb-community-server:latest
 ```
